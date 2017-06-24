@@ -16,6 +16,7 @@ import csv
 
 # Put the full path to your CSV/Excel file here
 MY_FILE = "../data/sample_sfpd_incident_all.csv"
+MY_DATA = "../data/sample_sfpd_incident_all.dict"
 
 
 def parse(raw_file, delimiter):
@@ -40,6 +41,8 @@ def parse(raw_file, delimiter):
     # Close the CSV file
     opened_file.close()
 
+    # open data output file
+
     return parsed_data
 
 
@@ -48,7 +51,13 @@ def main():
     new_data = parse(MY_FILE, ",")
 
     # Let's see what the data looks like!
-    print new_data
+    # print new_data
+    with open(MY_DATA, 'w+') as output_file:
+        for row in new_data:
+            output_file.write(str(row))
+
+    output_file.close()
+
 
 
 if __name__ == "__main__":
